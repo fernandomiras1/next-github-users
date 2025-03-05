@@ -33,7 +33,7 @@ const useGitHubUsers = () => {
         const data = await response.json();
         setUsers(searchTerm ? data.items : data);
       } catch (err) {
-        if (err.name !== "AbortError") {
+        if (err instanceof Error && err.name !== "AbortError") {
           setError(err instanceof Error ? err.message : "An error occurred");
         }
       } finally {
